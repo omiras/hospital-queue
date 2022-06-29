@@ -1,6 +1,9 @@
 # Turnos en el SOC
 
+Deseamos implementar un sistema de turnos como el que existe en los hospitales, esta vez para el SOC.
+
 [Chuleta Socket.io](https://socket.io/docs/v4/emit-cheatsheet/)
+[Demo](http://soc-ticket.herokuapp.com/)
 
 ## Requisito 1 - Pedir Turno y generar número de turno aleatório
 
@@ -17,3 +20,28 @@
 
 ### cliente.html
 1. El cliente debe recibir el evento 'enviar-numero-turno'; y ponerlo en la parte apropiada del DOM
+
+## Requisito 2 - El cliente recibe el turno 
+
+### server.js
+
+1. El servidor envía únicamente al cliente (socket.emit) el turno que le ha tocado. Podemos llamar al evento **enviar-turno**, y debemos pasar por parámetro el número de ticket generado.
+
+### cliente.html
+
+1. El cliente debe recibir el evento **enviar-turno**. Colocará el argumento del evento (número de ticket) en el lugar del DOM correspondiente
+
+
+### Requisito 3 - El servidor calcula el siguiente turno 
+
+### server.js
+1. Cada cierto tiempo, se debe enviar la lista de usuarios actualizados al cliente
+2. Usar setInterval para ejecutar una función cada __timePerPerson__ que se encargue:
+  1.  Enviar la lista actualizada de usuarios que esperan. Emitir un evento a todos los clientes de nombre 'actualizar-cola', con parámetro todo el array __usernames__
+  2. Debemos eliminar **el primer** elemento del array y guardarlo en la variable global currentUserTurn. Esa variable indica a quién realmente le toca el turno en este momento.
+
+## Requisito  Bonus 
+
+En la carpeta **public** existe un fichero de sonido. Hazlo sonar cuando sea el turno del cliente.
+
+
