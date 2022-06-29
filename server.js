@@ -17,7 +17,7 @@ let usernames = []
 let currentUserTurn;
 
 // Tiempo de duración de cada consulta, en segundos
-let timePerPerson = 10;
+let timePerPerson = 20;
 
 // importar el paquete de terceros socket.io, y nos quedamos únicamente con el objeto 'Server'
 const { Server } = require("socket.io");
