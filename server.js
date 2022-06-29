@@ -57,10 +57,10 @@ io.on('connection', (socket) => {
     })
 
     // Si alguien cierra la pestaña del navegador...¡adiós! Pierde el turno
-    socket.on('disconnect', () => {
-        usernames = usernames.filter(u => u.id != socket.id);
-        io.emit('actualizar-cola', usernames);
-    })
+    // socket.on('disconnect', () => {
+    //     usernames = usernames.filter(u => u.id != socket.id);
+    //     io.emit('actualizar-cola', usernames);
+    // })
 });
 
 
